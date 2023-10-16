@@ -1,2 +1,7 @@
 multi-chats/__pycache__
 multi-chats/config.yaml
+.vscode/
+test/
+speech/audios/
+speech/config.yaml
+
