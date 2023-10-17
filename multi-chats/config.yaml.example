@@ -1,0 +1,37 @@
+AzureGPT:
+  base:
+    api_type: azure
+    api_base: azure_endpoint
+    api_version: api_version
+    api_key: api_key
+    engine: gpt-35-turbo-16k
+  parameters:
+    temperature: 0.7
+    max_tokens: 800
+    top_p: 0.95
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    stop: None
+Minimax:
+  base:
+    model: abab5.5-chat
+    group_id: group_id
+    api_base: https://api.minimax.chat/v1/text/chatcompletion_pro?GroupId=
+    api_key: api_key
+  parameters:
+    stream: false
+    tokens_to_generate: 1024
+    temperature: 0.01
+    top_p: 0.95
+    mask_sensitive_info: false
+    messages: []  # list of dict, one element has three keys, sender_type: "USER" or "BOT" or "", sender_name: user name or bot name, text: input query of user or response of BOT,
+    sample_messages: [] # the sample messages of each bot
+  bot_setting: # the setting of each bot
+    bot_name: MM智能助理
+    content: MM智能助理是一款由MiniMax自研的，没有调用其他产品的接口的大型语言模型。MiniMax是一家中国科技公司，一直致力于进行大模型相关的研究。
+  reply_constraints: # the reply constraints of each bot
+    sender_type: BOT
+    sender_name: MM智能助理
+  message_type: # the message type of user
+    sender_type: USER
+    sender_name: 翠花
