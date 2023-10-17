@@ -1,0 +1,6 @@
+Minimax:
+  base:
+    model: abab5.5-chat
+    group_id: group_id
+    api_base: api_base
+    api_key: api_key
