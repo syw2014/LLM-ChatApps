@@ -21,6 +21,13 @@ st.set_page_config(
 # set page tile
 st.title(" :blue[TimbreBlend: Combine  different timbres  Into one]")
 
+st.markdown("""
+**项目介绍**  
+为提升声音音色效果，通过设置选择音色、设定其权重，将这些音色融合为一种音色进行输出；项目支持对声音的语速、音量、语调、音色和权重修改。   
+:green[**Enjoy Yourself!**]
+""")
+
+st.divider()  # Draws a horizontal rule
 
 # define placeholder for parameters for t2a api
 st.sidebar.header("Parameters for T2A")
@@ -207,16 +214,24 @@ post_data = {
     ]
 }
 
-
-if prompt_button:
-    st.markdown('''
+st.markdown('''
     :red[**Voice Combination**]  
         **Voice1**: :orange[{} Weight: {}]  
         **Voice2**: :green[{} Weight: {}]  
         **Voice3**: :blue[{} weight: {}]  
         **Voice4**: :orange[{} Weight: {}]
     '''.format(
-        voice_id1, voice_id1_w, voice_id2, voice_id2_w, voice_id3, voice_id3_w, voice_id4, voice_id4_w))
+    voice_id1, voice_id1_w, voice_id2, voice_id2_w, voice_id3, voice_id3_w, voice_id4, voice_id4_w))
+
+if prompt_button:
+    # st.markdown('''
+    # :red[**Voice Combination**]
+    #     **Voice1**: :orange[{} Weight: {}]
+    #     **Voice2**: :green[{} Weight: {}]
+    #     **Voice3**: :blue[{} weight: {}]
+    #     **Voice4**: :orange[{} Weight: {}]
+    # '''.format(
+    #     voice_id1, voice_id1_w, voice_id2, voice_id2_w, voice_id3, voice_id3_w, voice_id4, voice_id4_w))
 
     post_data["text"] = input_prompt
 
@@ -257,6 +272,8 @@ if prompt_button:
 
         audio_fs = open(output_path, 'rb')
         audio_bytes = audio_fs.read()
-        st.audio(audio_bytes, format='audio/ogg')
+        st.audio(audio_bytes, format='audio/wav')
+        st.download_button(label="Download audio file",
+                           data=audio_bytes, file_name=audio_name)
     else:
         st.write("Error: {}".format(response.status_code))
